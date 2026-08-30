@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LPHU - Faculty Network Node Diagnostic</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #0f172a; color: #f8fafc; padding: 50px 20px; }
+    .card { background: #1e293b; padding: 30px; border-radius: 8px; max-width: 650px; margin: auto; border: 1px solid #334155; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    h2 { color: #38bdf8; font-size: 20px; margin-bottom: 8px; }
+    p { color: #94a3b8; font-size: 13px; margin-bottom: 22px; }
+    .input-row { display: flex; gap: 10px; }
+    input[type=text] { flex: 1; padding: 11px; border: 1px solid #475569; background: #0f172a; color: #fff; border-radius: 4px; font-size: 14px; outline: none; }
+    input[type=text]:focus { border-color: #38bdf8; }
+    button { padding: 11px 20px; background: #0284c7; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 14px; }
+    button:hover { background: #0369a1; }
+    pre { background: #020617; padding: 15px; border-radius: 5px; color: #4ade80; margin-top: 20px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 13px; border: 1px solid #1e293b; display: none; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>LPHU Faculty Internal Node Diagnostic</h2>
+    <p>Run network ping to verify node connection with the central grading server.</p>
+    
+    <div class="input-row">
+      <input type="text" id="targetInput" placeholder="127.0.0.1" value="127.0.0.1">
+      <button onclick="runDiag()">Ping Node</button>
+    </div>
+
+    <pre id="consoleOutput"></pre>
+  </div>
+
+  <script>
+    function runDiag() {
+      const input = document.getElementById('targetInput').value.trim();
+      const out = document.getElementById('consoleOutput');
+      out.style.display = 'block';
+
+      const pingHeader = `PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.031 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.035 ms\n\n--- 127.0.0.1 ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss\n`;
+
+      if (input.includes('ls')) {
+        if (input.includes('..') || input.includes('/var/www')) {
+          out.innerHTML = `${pingHeader}\n[OUTPUT]:\nflag1.txt  html`;
+        } else {
+          out.innerHTML = `${pingHeader}\n[OUTPUT]:\nassets  dashboard.html  faculty_diag.html  index.html`;
+        }
+      } else if (input.includes('pwd')) {
+        out.innerHTML = `${pingHeader}\n[OUTPUT]:\n/var/www/html`;
+      } else if (input.includes('whoami') || input.includes('id')) {
+        out.innerHTML = `${pingHeader}\n[OUTPUT]:\nuid=33(www-data) gid=33(www-data) groups=33(www-data)`;
+      } else if (input.includes('cat') && (input.includes('flag') || input.includes('flag1.txt'))) {
+        out.innerHTML = `${pingHeader}\n[OUTPUT]:\nBUGATHON{lphu_c0mm4nd_1nj3ct10n_pwn3d_4481}`;
+      } else {
+        out.innerHTML = `PING ${input} (${input}) 56(84) bytes of data.\n64 bytes from ${input}: icmp_seq=1 ttl=64 time=0.042 ms\n64 bytes from ${input}: icmp_seq=2 ttl=64 time=0.038 ms\n\n--- ${input} ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss`;
+      }
+    }
+  </script>
+</body>
+</html>

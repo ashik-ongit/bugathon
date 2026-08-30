@@ -7,4 +7,4 @@ Disallow: /admin_backup/
 # Pass: Pollos2026!
 
 # FLAG 0:
-# BUGATHON{lphu_r0b0ts_r3c0n_succ3ss_9021}
+# flag ah inga veynga bhai

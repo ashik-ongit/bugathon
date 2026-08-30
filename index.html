@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOS POLLOS HERMANOS UNIVERSITY - ERP Portal</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: #1e293b url('assets/backround.png') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-bar { margin-top: 30px; font-size: 26px; font-weight: 700; letter-spacing: 2px; color: #111; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
+    .login-card {
+      background: rgba(43, 76, 92, 0.85);
+      backdrop-filter: blur(6px);
+      padding: 35px 40px;
+      width: 440px;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+      text-align: center;
+      margin-top: -30px;
+    }
+    .logo-container {
+      background: white;
+      border-radius: 50%;
+      width: 105px;
+      height: 105px;
+      margin: -80px auto 15px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .logo-container img { width: 75px; height: 75px; object-fit: contain; }
+    .form-group { text-align: left; margin-bottom: 18px; }
+    .form-group label { display: block; color: #f0f0f0; font-size: 13px; margin-bottom: 6px; }
+    .form-group input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 14px;
+      background-color: #fbfbf0;
+      outline: none;
+    }
+    .form-group input:focus { border-color: #0d79c1; }
+    .forgot-link { float: right; color: #cbd5e1; font-size: 12px; text-decoration: none; }
+    .forgot-link:hover { color: #fff; }
+    .login-btn {
+      width: 100%;
+      background: linear-gradient(180deg, #2ea3f2 0%, #0d79c1 100%);
+      color: white;
+      border: none;
+      padding: 11px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .login-btn:hover { background: #0b68a6; }
+    footer { color: #ffffff; font-size: 12px; margin-bottom: 15px; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+  </style>
+</head>
+<body>
+  <div class="top-bar">LOS POLLOS HERMANOS UNIVERSITY</div>
+
+  <!-- ========================================================= -->
+  <!-- [DEBUG INTERNAL NOTE]                                     -->
+  <!-- Staging Student Account: student@lphu.edu / Pollos2026!  -->
+  <!-- LEVEL 0 FLAG: BUGATHON{lphu_3rp_cr3ds_l34k3d_9021}        -->
+  <!-- ========================================================= -->
+
+  <div class="login-card">
+    <div class="logo-container">
+      <img src="assets/logo.jpg" alt="LPHU Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+    </div>
+    <form id="loginForm">
+      <div class="form-group">
+        <label>Username or Email</label>
+        <input type="text" id="username" placeholder="student@lphu.edu" required>
+      </div>
+      <div class="form-group">
+        <label>Password <a href="#" class="forgot-link">Forgot your password?</a></label>
+        <input type="password" id="password" required>
+      </div>
+      <button type="submit" class="login-btn">Log In</button>
+    </form>
+  </div>
+
+  <footer>&copy; Madrigal Electromotive Academic Systems</footer>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value.trim();
+
+      if (u === 'student@lphu.edu' && p === 'Pollos2026!') {
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Invalid email or password. Check source notes!');
+      }
+    });
+  </script>
+</body>
+</html>

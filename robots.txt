@@ -1,10 +1,12 @@
+cat << 'EOF' > robots.txt
 User-agent: *
-Disallow: /faculty_diag.html
 Disallow: /admin_backup/
+Disallow: /faculty_diag.html
 
-# Developer Note: Staging student credentials below
-# User: student@lphu.edu
-# Pass: Pollos2026!
+# Internal Note: Developer testing profile
+# Staging Student Account: student@lphu.edu
+# Default Credential: Pollos2026!
 
-# FLAG 0:
-# flag ah inga veynga bhai
+# LEVEL 0 FLAG:
+{blue_stuff}
+EOF

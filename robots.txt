@@ -1,4 +1,4 @@
-cat << 'EOF' > robots.txt
+
 User-agent: *
 Disallow: /admin_backup/
 Disallow: /faculty_diag.html
@@ -9,4 +9,4 @@ Disallow: /faculty_diag.html
 
 # LEVEL 0 FLAG:
 {blue_stuff}
-EOF
+

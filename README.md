@@ -1,4 +1,4 @@
-cat << 'EOF' > README.md
+
 # Los Pollos Hermanos University - CTF Challenge
 
 Multi-tier web exploitation room designed for TryHackMe / Bugathon.
@@ -20,4 +20,4 @@ Multi-tier web exploitation room designed for TryHackMe / Bugathon.
 5. What hidden directory inside `/var/www` contains the staging flag artifact? (`.secret_core`)
 6. What command alternative to `cat` can be used to read the protected file? (`tac`)
 7. **Flag 1**: `{blue_stuff}`
-EOF
+

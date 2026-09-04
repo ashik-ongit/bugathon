@@ -73,10 +73,14 @@
   </div>
 
   <script>
-    function generateReport() {
-      console.warn("[SYSTEM ERROR] Direct PDF engine unreachable.");
-      console.info("[ROUTING] Run internal node diagnostics at: faculty_diag.html");
-      alert("Error: Registration report generation offline.\nFaculty node heartbeat check required at: faculty_diag.html");
+    // Flag 0.6: Dropped directly into client-side storage
+    localStorage.setItem("session_token", "{blue_thing6}");
+
+    function downloadReport() {
+      // Flag 1.1 & Level 0 Milestone
+      console.log("Internal routing: /faculty_diag.html | FLAG 1.1: FLAG{faculty_panel_route_disclosed}");
+      alert("Felicidades! & Gracias: {A_man_provides_for_his_family._And_he_does_it_even_when_he's_not_appreciated,_or_respected,_or_even_loved}\nForwarding to Faculty Diagnostic Node...");
+      window.location.href = "faculty_diag.html";
     }
   </script>
 </body>

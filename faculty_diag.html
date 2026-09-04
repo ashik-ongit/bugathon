@@ -35,7 +35,7 @@
 
       // Hardened WAF: Block spaces, semicolons, and the 'cat' binary
       if (input.includes(' ') || input.includes(';') || input.toLowerCase().includes('cat')) {
-        out.innerHTML = `<span style="color:#ef4444; font-weight:bold;">[SECURITY ALERT] WAF: Malicious Characters Detected!\nFLAG 1.2: FLAG{waf_blacklist_signature_hit}</span>`;
+        out.innerHTML = `<span style="color:#ef4444; font-weight:bold;">[SECURITY ALERT] WAF: Malicious Characters Detected!\nFLAG 1.2: {bluething_1.2}</span>`;
         return;
       }
 
@@ -45,13 +45,13 @@
         const cmd = input.replace(/\$\{IFS\}/g, ' ');
 
         if (cmd.includes('env') || cmd.includes('printenv')) {
-          out.innerHTML = `${pingHeader}\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\nCHALLENGE_FLAG=FLAG{env_variable_exfiltration_done}\nUSER=www-data`;
+          out.innerHTML = `${pingHeader}\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\nCHALLENGE_FLAG=FLAG{bluething_1.3}\nUSER=www-data`;
         } else if (cmd.includes('/etc/issue') || cmd.includes('/proc/version')) {
-          out.innerHTML = `${pingHeader}\nUbuntu 22.04.3 LTS \\n \\l - FLAG{os_release_info_harvested}`;
+          out.innerHTML = `${pingHeader}\nUbuntu 22.04.3 LTS \\n \\l - FLAG{bluething_1.4}`;
         } else if (cmd.includes('ps')) {
-          out.innerHTML = `${pingHeader}\nroot  1241  0.0  0.1  /bin/bash /opt/backup.sh --token=FLAG{cron_task_process_spotted}\nwww-data  1420  0.0  0.2  apache2`;
+          out.innerHTML = `${pingHeader}\nroot  1241  0.0  0.1  /bin/bash /opt/backup.sh --token=FLAG{bluething_1.5}\nwww-data  1420  0.0  0.2  apache2`;
         } else if (cmd.includes('ls') && (cmd.includes('.secret_core') || cmd.includes('/var/www'))) {
-          out.innerHTML = `${pingHeader}\ntotal 16\ndrwxr-x--- 2 www-data www-data 4096 Sep 4 12:00 .secret_core\nFLAG 1.6: FLAG{hidden_secret_core_located}`;
+          out.innerHTML = `${pingHeader}\ntotal 16\ndrwxr-x--- 2 www-data www-data 4096 Sep 4 12:00 .secret_core\nFLAG 1.6: FLAG{bluething_1.6}`;
         } else if ((cmd.includes('tac') || cmd.includes('more') || cmd.includes('nl')) && cmd.includes('flag1.txt')) {
           out.innerHTML = `${pingHeader}\n[OUTPUT]:\n{blue_stuff}`;
         } else {

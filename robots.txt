@@ -1,12 +1,9 @@
+# FLAG 0.3: FLAG{robots_crawler_directive_found}
 
 User-agent: *
 Disallow: /admin_backup/
 Disallow: /faculty_diag.html
 
-# Internal Note: Developer testing profile
+# Internal Staging Notes:
 # Staging Student Account: student@lphu.edu
 # Default Credential: Pollos2026!
-
-# LEVEL 0 FLAG:
-{blue_stuff}
-

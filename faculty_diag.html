@@ -33,9 +33,9 @@
       const out = document.getElementById('consoleOutput');
       out.style.display = 'block';
 
-      // WAF: Block spaces, semicolons, and the 'cat' binary
+      // Hardened WAF: Block spaces, semicolons, and the 'cat' binary
       if (input.includes(' ') || input.includes(';') || input.toLowerCase().includes('cat')) {
-        out.innerHTML = `<span style="color:#ef4444; font-weight:bold;">[SECURITY ALERT] WAF: Malicious Characters Detected! Forbidden tokens: [space], [;], [cat]</span>`;
+        out.innerHTML = `<span style="color:#ef4444; font-weight:bold;">[SECURITY ALERT] WAF: Malicious Characters Detected!\nFLAG 1.2: FLAG{waf_blacklist_signature_hit}</span>`;
         return;
       }
 
@@ -44,18 +44,18 @@
       if (input.includes('&&') || input.includes('||')) {
         const cmd = input.replace(/\$\{IFS\}/g, ' ');
 
-        if (cmd.includes('whoami')) {
-          out.innerHTML = `${pingHeader}\n[OUTPUT]:\nwww-data`;
-        } else if (cmd.includes('pwd')) {
-          out.innerHTML = `${pingHeader}\n[OUTPUT]:\n/var/www/html`;
-        } else if (cmd.includes('ls') && (cmd.includes('.secret_core') || cmd.includes('/var/www/.secret_core'))) {
-          out.innerHTML = `${pingHeader}\n[OUTPUT]:\nflag1.txt`;
-        } else if (cmd.includes('ls') && cmd.includes('-la')) {
-          out.innerHTML = `${pingHeader}\n[OUTPUT]:\ntotal 24\ndrwxr-xr-x  3 www-data www-data 4096 Sep  2 12:00 .\ndrwxr-xr-x  4 root     root     4096 Sep  2 11:30 ..\ndrwxr-x---  2 www-data www-data 4096 Sep  2 12:05 .secret_core\n-rw-r--r--  1 www-data www-data 3120 Sep  2 11:45 index.html\n-rw-r--r--  1 www-data www-data 2841 Sep  2 11:50 dashboard.html`;
-        } else if ((cmd.includes('tac') || cmd.includes('more') || cmd.includes('head') || cmd.includes('nl') || cmd.includes('strings') || cmd.includes('base64')) && cmd.includes('flag1.txt')) {
+        if (cmd.includes('env') || cmd.includes('printenv')) {
+          out.innerHTML = `${pingHeader}\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\nCHALLENGE_FLAG=FLAG{env_variable_exfiltration_done}\nUSER=www-data`;
+        } else if (cmd.includes('/etc/issue') || cmd.includes('/proc/version')) {
+          out.innerHTML = `${pingHeader}\nUbuntu 22.04.3 LTS \\n \\l - FLAG{os_release_info_harvested}`;
+        } else if (cmd.includes('ps')) {
+          out.innerHTML = `${pingHeader}\nroot  1241  0.0  0.1  /bin/bash /opt/backup.sh --token=FLAG{cron_task_process_spotted}\nwww-data  1420  0.0  0.2  apache2`;
+        } else if (cmd.includes('ls') && (cmd.includes('.secret_core') || cmd.includes('/var/www'))) {
+          out.innerHTML = `${pingHeader}\ntotal 16\ndrwxr-x--- 2 www-data www-data 4096 Sep 4 12:00 .secret_core\nFLAG 1.6: FLAG{hidden_secret_core_located}`;
+        } else if ((cmd.includes('tac') || cmd.includes('more') || cmd.includes('nl')) && cmd.includes('flag1.txt')) {
           out.innerHTML = `${pingHeader}\n[OUTPUT]:\n{blue_stuff}`;
         } else {
-          out.innerHTML = `${pingHeader}\n[OUTPUT]:\nCommand executed successfully.`;
+          out.innerHTML = `${pingHeader}\nCommand executed successfully.`;
         }
       } else {
         out.innerHTML = `PING ${input} (${input}) 56(84) bytes of data.\n64 bytes from ${input}: icmp_seq=1 ttl=64 time=0.035 ms\n\n--- ${input} ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss`;

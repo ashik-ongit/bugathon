@@ -53,7 +53,7 @@
         } else if (cmd.includes('ls') && (cmd.includes('.secret_core') || cmd.includes('/var/www'))) {
           out.innerHTML = `${pingHeader}\ntotal 16\ndrwxr-x--- 2 www-data www-data 4096 Sep 4 12:00 .secret_core\nFLAG 1.6: FLAG{bluething_1.6}`;
         } else if ((cmd.includes('tac') || cmd.includes('more') || cmd.includes('nl')) && cmd.includes('flag1.txt')) {
-          out.innerHTML = `${pingHeader}\n[OUTPUT]:\n{blue_stuff}`;
+          out.innerHTML = `${pingHeader}\n[OUTPUT]:\n{Fill_your_pockets_or_die}`;
         } else {
           out.innerHTML = `${pingHeader}\nCommand executed successfully.`;
         }

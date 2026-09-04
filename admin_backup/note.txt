@@ -1,1 +1,3 @@
-
+Internal Audit Record:
+Staging user backups migrated to offline cold storage.
+FLAG 0.5: {blue_thing_5}

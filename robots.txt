@@ -1,4 +1,4 @@
-# FLAG 0.3: FLAG{robots_crawler_directive_found}
+# FLAG 0.3: {blue_thing3}
 
 User-agent: *
 Disallow: /admin_backup/
